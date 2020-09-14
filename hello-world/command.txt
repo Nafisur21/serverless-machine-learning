@@ -1,0 +1,4 @@
+# To create template
+sls create --template aws-python3 --name hello-service
+# to deploy
+sls deploy
