@@ -2,3 +2,36 @@
 sls create --template aws-python3 --name hello-service
 # to deploy
 sls deploy
+# To install plugin
+sls plugin install -n serverless-python-requirements@4.2.4
+# To test locally
+sls invoke local --function predict-price --path event.json
+# configure aws serverless
+sls config credentials --provider aws --key AKIA57IDU4ZBXBFRRDFN --secret 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
+##
+sls create --template aws-python3 --name california-housing
+sls plugin install -n serverless-python-requirements@4.2.4
+sls invoke local --function predict-price --path event.json
+sudo sls deploy
+sls invoke --function predict-price --path event.json
+
+## For creating lambda layers
+mkdir -p build/python/lib/python3.6/site-package
+#pip install pandas -t build/python/lib/python3.6/site-packages --system
+#pip3 install scikit-learn==0.20.2 -t build/python/lib/python3.6/site-packages --system
+pip install pandas -t build/python/lib/python3.6/site-packages
+cd build
+sudo yum install zip
+zip -r pandas-numpy.zip .
+
+# windows subsystem for linux
+enable windows subsystem on windows and restart
+install ubuntu from microsoft store
+on cmd type ububtu1804 or slect from start menu
+to mount to c or D drive use this command
+cd /mnt/c
+cd /mnt/d
+sudo apt update
+sudo apt install python3
+sudo apt install python3-pip
+pip3 --version

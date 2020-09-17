@@ -4,6 +4,7 @@ from sklearn.externals import joblib
 model_name = 'model_1553724836.6208675.joblib'
 model = joblib.load(model_name)
 
+
 def predict(event, context):
     body = {
         "message": "OK",
@@ -23,10 +24,10 @@ def predict(event, context):
 
         inputVector = [medInc, houseAge, aveRooms, aveBedrms, population, aveOccup, latitude, longitude]
         data = [inputVector]
-        predictedPrice = model.predict(data)[0] * 100000 # convert to units of 1 USDs
+        predictedPrice = model.predict(data)[0] * 100000  # convert to units of 1 USDs
         predictedPrice = round(predictedPrice, 2)
         body['predictedPrice'] = predictedPrice
-    
+
     else:
         body['message'] = 'queryStringParameters not in event.'
 
@@ -43,26 +44,32 @@ def predict(event, context):
 
     return response
 
-def do_main():
-    event = {
-        'queryStringParameters': {
-            'medInc': 200000,
-            'houseAge': 10,
-            'aveRooms': 4,
-            'aveBedrms': 1,
-            'population': 800,
-            'aveOccup': 3,
-            'latitude': 37.54,
-            'longitude': -121.72
-        }
-    }
 
-    response = predict(event, None)
-    body = json.loads(response['body'])
-    print('Price:', body['predictedPrice'])
+# def do_main():
+#     event = {
+#         'queryStringParameters': {
+#             'medInc': 200000,
+#             'houseAge': 10,
+#             'aveRooms': 4,
+#             'aveBedrms': 1,
+#             'population': 800,
+#             'aveOccup': 3,
+#             'latitude': 37.54,
+#             'longitude': -121.72
+#         }
+#     }
+#
+#     response = predict(event, None)
+#     body = json.loads(response['body'])
+#     print('Price:', body['predictedPrice'])
+#
+#     with open('event.json', 'w') as event_file:
+#         event_file.write(json.dumps(event))
+#
+# # do_main()
+if __name__ == '__main__':
+    with open('event.json') as f:
+        event = json.load(f)
 
-    with open('event.json', 'w') as event_file:
-        event_file.write(json.dumps(event))
-    
-
-#do_main()
+    res = predict(event=event, context='None')
+    print(res)

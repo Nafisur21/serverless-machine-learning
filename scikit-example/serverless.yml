@@ -6,7 +6,7 @@ provider:
   name: aws
   runtime: python3.6
   stage: dev
-  region: eu-central-1
+  region: ap-south-1
 
 # you can add packaging information here
 package:
@@ -42,10 +42,10 @@ functions:
                 latitude: true
                 longitude: true
 
-plugins:
-  - serverless-python-requirements
-
-custom:
-  pythonRequirements:
-    dockerizePip: true
-    slim: true 
+##Docker is required for this part
+#plugins:
+#  - serverless-python-requirements
+#custom:
+#  pythonRequirements:
+#    dockerizePip: true
+#    slim: true
