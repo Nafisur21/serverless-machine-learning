@@ -7,7 +7,7 @@ sls plugin install -n serverless-python-requirements@4.2.4
 # To test locally
 sls invoke local --function predict-price --path event.json
 # configure aws serverless
-sls config credentials --provider aws --key AKIA57IDU4ZBXBFRRDFN --secret 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
+sls config credentials --provider aws --key AKI --secret 3MT
 ##
 sls create --template aws-python3 --name california-housing
 sls plugin install -n serverless-python-requirements@4.2.4
